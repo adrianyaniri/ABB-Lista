@@ -81,25 +81,35 @@ class Lista:
     def estaEnLista(self, elemento):
         res = False
         if not self.estaVacia():
+            if self.primero.dato == elemento:
+                res = True
             res = self.primero.estaEnLista(elemento)
+        else:
+            raise Exception('esta vacia')
         return res
 
 
-
-    def obtenerElementos(self):
-        aux = Lista()
-        if not self.estaEnLista():
-            self.primero.obtenerElementos(aux)
-        else:
-            raise Exception('lista vacia')
-        return aux
-
-
-# falta terminar
+# funcion elimina todos los duplicados de la lista
     def eliminarDuplicados(self):
-        if not self.estaVacia():
-            self.primero.eliminarDuplicados()
+        nodoAcut = self.primero
+        nodoPrev = self.primero
+        nuevaLista = Lista()
+        while nodoAcut != None:
+            if self.estaEnLista(nodoAcut.dato):
+                nuevaLista = nodoAcut
+                nodoPrev.siguiente = nodoAcut.siguiente
+            else:
+                nuevaLista = nodoAcut
+                nodoPrev = nodoAcut
+            nodoAcut = nodoAcut.siguiente
+        return nuevaLista
 
+# agrega al final de la lista otra lista pasada por parametro
 
-
+    def agregarLista(self,lista):
+        nodoAux = self.primero
+        while nodoAux.siguiente != None:
+            nodoAux = nodoAux.siguiente
+        
+        nodoAux.siguiente = lista.primero
 

@@ -57,33 +57,18 @@ class Nodo:
             if self.siguiente.dato == dato:
                 self.siguiente = self.siguiente.siguiente
             else:
-                self.siguiente.deleteAll(dato)
+                self.siguiente.delete(dato)
             
 
 # recibe un nodo y busca en la lista si esta el elemento pasado por parametro
 # retorna 'true' si lo encuentra
 
     def estaEnLista(self, elemento):
-        res = None
-        if self.dato == elemento:
-            res = True
-        else:
-            if self.siguiente != None:
-                self.siguiente.estaEnLista(elemento)
-            res = False
-        return res
-
-
-
-
-    def eliminarDuplicados(self):
+        res = False
         if self.tieneSiguiente():
-            if self.dato == self.siguiente.dato:
-                self.siguente = self.siguiente.siguiente
-                self.delete(self.siguiente)
+            if self.siguiente.dato == elemento:
+                res = True
             else:
-                self.siguiente.eliminarDuplicados()
-        
-            
-
+                self.siguiente.estaEnLista(elemento)
+        return res
 

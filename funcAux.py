@@ -3,3 +3,7 @@
 def totalDeLetras(palabra):
     return len(palabra)
 
+
+def empiezaConMayuscula(palabra):
+    return str(palabra[0]).isupper()
+

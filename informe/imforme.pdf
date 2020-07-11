@@ -1,0 +1,14 @@
+Informe del las funciones TDA Lista
+
+* estaEnLista(self, elemento): funcion que retorna si el elemento pasado por parametro se encuentra en la lista
+
+    -primero ser crea un variable para guardar el resultado
+    - variable se incia en 'False'
+    - pregunta si la lista no esta vacia
+    - llamada recursiva con el nodo primero de la lista
+    - cambia el valor de la variable 
+    -si la lista esta vacia lanza una exception
+    - retorna el valor de la variable 'true' o 'false'
+
+
+

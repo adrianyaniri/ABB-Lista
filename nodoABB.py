@@ -116,32 +116,21 @@ class NodoArbol:
         if not self.paginas.estaEnLista(web):
             self.paginas.append(web)
 
-    def buscarPalabras(self,palabra):
-        listaAux = Lista()
-
+         
+# retorna una lista web de la palabra pasado por parametro
+    def listaWebPalabra(self, palabra):
+        lista = Lista()
         if self.palabra == palabra:
-            listaAux = self.paginas
-
-        elif palabra < self.palabra:
-            if self.tieneIzquierdo():
-                listaAux = self.izquierdo.buscarPalabras(palabra)
+            lista = self.paginas.clonar()
         else:
-            if self.tieneDerecho():
-                listaAux = self.derecho.buscarPalabras(palabra)
+            if palabra < self.palabra:
+                if self.tieneIzquierdo():
+                    self.izquierdo.listaWebPalabra(palabra)
+            else:
+                if self.tieneDerecho():
+                    self.derecho.listaWebPalabra(palabra)
+        return lista
 
-
-    def listaWebsDeLaPalabra(self,palabraBus,listaWeb):
-    
-        if self.palabra == palabraBus:
-            listaWeb.append(self.paginas)
-        
-        if self.tieneIzquierdo():
-            self.izquierdo.listaWebsDeLaPalabra(palabraBus,listaWeb)
-
-        if self.tieneDerecho():
-            self.derecho.listaWebsDeLaPalabra(palabraBus,listaWeb)
-                
-        return listaWeb
 
 # funcion que recibe por parametro una web y un lista
 # devuelve la lista con todas la palabras que esta en esa web
@@ -245,21 +234,20 @@ class NodoArbol:
 
 
 
-    def paginasEnNivel(self, nivel,lista, nivelNodo = 0):
+    def paginasEnNivel(self, nivel, nivelNodo = 0):
+        lista = Lista()
         if nivelNodo == nivel:
             lista.append(self.paginas)
         else:
             if self.tieneIzquierdo():
-                self.izquierdo.paginasEnNivel(nivel,lista, nivelNodo +1)
-            
-            
+                self.izquierdo.paginasEnNivel(nivel,nivelNodo +1)
+
             if self.tieneDerecho():
-                self.derecho.paginasEnNivel(nivel,lista, nivelNodo+1)
+                self.derecho.paginasEnNivel(nivel, nivelNodo +1)
+        return lista
 
-        # falta implementar esta funcion d
-        #lista.eliminarDuplicados()
-        
 
+    
 
     def cantidadDePalabrasMasUsadas(self, cantidadDePaginas):
         cantidad = 0
@@ -274,6 +262,20 @@ class NodoArbol:
             cantidad += self.derecho.cantidadDePalabrasMasUsadas(cantidadDePaginas)
 
         return cantidad
+
+# retorna la lista con todas la palabras en mayusculas en orden alfabetico
+
+    def internasMayusculasAlfabetico(self,lista):
+
+        if self.tieneIzquierdo():
+            self.izquierdo.internasMayusculasAlfabetico(lista)
+        
+        if not self.esHoja() and empiezaConMayuscula(self.palabra):
+            lista.append(self.palabra)
+        
+        if self.tieneDerecho():
+            self.derecho.internasMayusculasAlfabetico(lista)
+
 
 
 

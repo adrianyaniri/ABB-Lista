@@ -50,28 +50,40 @@ class ABB:
             self.insertarPalabra(aux.dato, web)
             aux = aux.siguiente
 
-    def buscarPalabras(self, listaPalabras):
-        listaWeb = Lista()
+
+
+    def buscarPalabras(self, listaDePalabras):
+        lista = Lista()
         if not self.estaVacio():
-            self.raiz.buscarPalabras(listaPalabras)
+            lista = self.raiz.buscarPalabras(listaDePalabras)
+        else:
+            raise Exception('arbol vacio')   
+        return lista
 
 
-    def listaWebsDeLaPalabra(self,palabra):
-        listaAux = Lista()
+
+# funcion que retorna una lista de web de la palabra
+    def listaWebPalabra(self, palabra):
+        lista = Lista()
         if not self.estaVacio():
-            self.raiz.listaWebsDeLaPalabra(palabra, listaAux)
-        listaAux = palabra.clonar()
-        return listaAux
+            lista = self.raiz.listaWebPalabra(palabra).clonar()
+        else:
+            raise Exception('arbol vacio')
+           
+        return lista
 
 
-# funcion que recibe por parametor una web y retorna un lista con
+# funcion que recibe por parametro una web y retorna un lista con
 # todas la palabras de esa pagina
 
     def palabrasDePagina(self, web):
         listaPalabras = Lista()
         if not self.estaVacio():
             self.raiz.palabrasDePagina(web,listaPalabras)
+        else:
+            raise Exception('arbol vacio')
         return listaPalabras
+
 
 # recibe por parametro una palabra y la elimina del arbol
     def eliminarPalabra(self,palabra):
@@ -91,6 +103,8 @@ class ABB:
                     self.raiz = None
             else:
                 self.raiz.eliminarPalabra(palabra)
+        else:
+            raise Exception('arbol vacio')
 
 
 # elimina la pagina web de cada lista de palabras
@@ -98,6 +112,8 @@ class ABB:
     def eliminarPagina(self,web):
         if not self.estaVacio():
             self.raiz.eliminarPagina(web)
+        else:
+            raise Exception('arbol vacio')
 
 
 # recibe por parametro un cantidad de letras
@@ -108,6 +124,9 @@ class ABB:
         total= 0
         if not self.estaVacio():
            total = self.raiz.cantidadTotalPalabras(cantidadLetras)
+        else:
+            raise Exception('arbol vacio')
+
         return total
 
 # funcion que indica si el arbol esta balanceado o no
@@ -116,6 +135,8 @@ class ABB:
         res = None
         if not self.estaVacio():
            res =  self.raiz.estaBalanceado(res)
+        else:
+            raise Exception('arbol vacio')
         return res
 
 
@@ -125,7 +146,9 @@ class ABB:
     def paginasEnNivel(self,nivel):
         lista = Lista()
         if not self.estaVacio():
-          self.raiz.paginasEnNivel(nivel, lista)
+           lista =  self.raiz.paginasEnNivel(nivel).clonar()
+        else:
+            raise Exception('arbol vacio')
 
         return lista
 
@@ -134,25 +157,19 @@ class ABB:
         total = None
         if not self.estaVacio():
            total = self.raiz.cantidadDePalabrasMasUsadas(cantidadDePaginas)
+        else:
+            raise Exception ('arbol vacio')
         return total
 
 
+# retorna un lista con todas la palabras que comienzan con mayuscla
+#solo de los nodos internos
+# no de los nodos hojas
 
-abb = ABB()
-abb.insertarPalabra('tarro','google')
-abb.insertarPalabra('dado','yahoo')
-abb.insertarPalabra('fuente','google')
-
-l = Lista()
-l.append('sabana')
-l.append('te')
-l.append('oso')
-l.append('foca')
-l.append('vampiro')
-
-abb.insertarPagina(l,'google')
-abb.insertarPalabra('tarro', 'yahoo')
-abb.insertarPagina(l,'get')
-
-print(abb.preOrden())
-print(abb.cantidadDePalbrasMasUsadas(2))
+    def internasMayusculasAlfabetico(self):
+        lista = Lista()
+        if not self.estaVacio():
+            self.raiz.internasMayusculasAlfabetico(lista)
+        else:
+            raise Exception ('arbol vacio')
+        return lista
