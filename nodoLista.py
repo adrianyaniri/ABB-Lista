@@ -69,6 +69,11 @@ class Nodo:
             if self.siguiente.dato == elemento:
                 res = True
             else:
-                self.siguiente.estaEnLista(elemento)
+                res = self.siguiente.estaEnLista(elemento)
+
         return res
 
+
+
+
+        

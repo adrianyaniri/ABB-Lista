@@ -11,6 +11,9 @@ class Lista:
 
         return self.primero == None
 
+    def vaciar(self):
+        return self.primero == None
+
     def __repr__(self):
 
         out = 'primero'
@@ -78,38 +81,37 @@ class Lista:
 
 
 # funcion que recibe por parametro un elemento y retorna si se encuentra o no en la lista
-    def estaEnLista(self, elemento):
-        res = False
+    def estaEnLista(self,elemento):
+        res = None
         if not self.estaVacia():
             if self.primero.dato == elemento:
                 res = True
-            res = self.primero.estaEnLista(elemento)
+            else:
+                res = self.primero.estaEnLista(elemento)
+        
         else:
-            raise Exception('esta vacia')
+            raise Exception('listaVacia')
         return res
+
 
 
 # funcion elimina todos los duplicados de la lista
     def eliminarDuplicados(self):
-        nodoAcut = self.primero
         nodoPrev = self.primero
-        nuevaLista = Lista()
-        while nodoAcut != None:
-            if self.estaEnLista(nodoAcut.dato):
-                nuevaLista = nodoAcut
-                nodoPrev.siguiente = nodoAcut.siguiente
+        nodoAct = self.primero
+        listaAx = self.clonar()
+        self.vaciar()
+        while nodoAct != None:
+            if listaAx.estaEnLista(nodoAct.dato):
+                nodoPrev.siguiente = nodoAct.siguiente
             else:
-                nuevaLista = nodoAcut
-                nodoPrev = nodoAcut
-            nodoAcut = nodoAcut.siguiente
-        return nuevaLista
+                self.append(nodoAct.dato)
+                nodoPrev = nodoAct
+            nodoAct = nodoAct.siguiente
 
-# agrega al final de la lista otra lista pasada por parametro
+    
 
-    def agregarLista(self,lista):
-        nodoAux = self.primero
-        while nodoAux.siguiente != None:
-            nodoAux = nodoAux.siguiente
-        
-        nodoAux.siguiente = lista.primero
-
+l = Lista() 
+l.append(2),l.append(8),l.append(2),l.append(2),l.append(2)
+l.eliminarDuplicados()
+print(l)
