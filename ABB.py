@@ -44,12 +44,10 @@ class ABB:
 # funcion que recibe por parametro un lista de palabras y una web.
 # las inserta en el arbol donde corresponda
 
-    def insertarPagina(self, listaPaginas, web):
-        aux = listaPaginas.primero
-        while aux != None:
-            self.insertarPalabra(aux.dato, web)
-            aux = aux.siguiente
-
+    def insertarPagina(self, lista, web,pos = 0):
+        if not lista.estaVacia() and pos < lista.len() :
+            self.insertarPalabra(lista.getDato(pos),web)
+            self.insertarPagina(lista, web, pos +1)
 
 
     def buscarPalabras(self, listaDePalabras):
@@ -146,7 +144,7 @@ class ABB:
     def paginasEnNivel(self,nivel):
         lista = Lista()
         if not self.estaVacio():
-           lista =  self.raiz.paginasEnNivel(nivel).clonar()
+           self.raiz.paginasEnNivel(nivel).clonar()
         else:
             raise Exception('arbol vacio')
 
@@ -173,3 +171,12 @@ class ABB:
         else:
             raise Exception ('arbol vacio')
         return lista
+
+
+l = Lista()
+l.append('sabana')
+l.append('yoga')
+a = ABB()
+a.insertarPalabra('casa','google')
+a.insertarPagina(l,'yahoo')
+print(a.paginasEnNivel(1))

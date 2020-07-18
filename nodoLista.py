@@ -74,6 +74,15 @@ class Nodo:
         return res
 
 
+# recibe por parametro un nodo y retorna el nodo en esa posicion
+    def getNodo(self,pos,posAct = 0):
+        nodo = None
+        if posAct == pos:
+            nodo = self
+        else:
+            nodo = self.siguiente.getNodo(pos, posAct + 1)
+        return nodo
+
 
 
         

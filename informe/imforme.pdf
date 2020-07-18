@@ -40,10 +40,11 @@ funcion TDA ABB
     - si el ABB no esta vacio llama a la funcion recursiva
 
 * insetarPagina() resibe una lista de paginas y la inserta en ABB
-    - se crea una variable aux que se incia con el primer nodo de la lista
-    - entra al while no aux no apunta a None
-    -llama a la funcion insertaPalabra() con el parametro del dato del aux y la pagina 
-    - nueve el puntero axu al siguiente
+    - se verifica que la lista que se pasa por parametro no esta vacia.
+    - llama al la funcion insertaPalabra(), se le paso por parametro un el dato que se obtiene de llamar a la funcion getDato del TDA lista 
+    - despues llama a la funcion de forma recursiva
+    - a la poscion pasada por parametro se la incremena en 1
+    
 
 * buscarPalabras() resibe un lista de palabras y busca la palabra en el ABB, retorna una lista con las direcciones web de la cada palabra de la lista
     - crea una lista

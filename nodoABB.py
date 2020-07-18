@@ -116,8 +116,6 @@ class NodoArbol:
         if not self.paginas.estaEnLista(web):
             self.paginas.append(web)
 
-    def insertarPagina(self,listaPalabras,web):
-
 
          
 # retorna una lista web de la palabra pasado por parametro
@@ -237,16 +235,16 @@ class NodoArbol:
 
 
 
-    def paginasEnNivel(self, nivel, nivelNodo = 0,lista):
+    def paginasEnNivel(self, nivel, nivelNodo = 0, lista = None):
         if nivelNodo == nivel:
-            lista.append(self.paginas)
+            lista.append(self.paginas.getDato(1))
         else:
             if self.tieneIzquierdo():
                 self.izquierdo.paginasEnNivel(nivel,nivelNodo +1)
 
             if self.tieneDerecho():
                 self.derecho.paginasEnNivel(nivel, nivelNodo +1)
-        return lista
+
 
 
     

@@ -44,6 +44,7 @@ class Lista:
             dato = self.primero.getDato(pos)
         else:
             raise Exception('posicion no valida')
+        return dato
 
     def deletePos(self, pos):
 
@@ -77,6 +78,20 @@ class Lista:
                 self.primero.delete(dato)
         else:
             raise Exception('lista esta vacia')
+
+
+
+# recibe por parametro una posicion y retora el nodo en esa posicion
+    def getNodo(self,pos):
+        nodo = None
+        if 0 <= pos < self.len() and not self.estaVacia():
+            nodo = self.primero.getNodo(pos)
+        else:
+            raise Exception('lista vacia')
+        return nodo
+
+        
+
     
 
 
@@ -97,21 +112,16 @@ class Lista:
 
 # funcion elimina todos los duplicados de la lista
     def eliminarDuplicados(self):
-        nodoPrev = self.primero
         nodoAct = self.primero
-        listaAx = self.clonar()
-        self.vaciar()
+        nodoPrev = self.primero
+        listaAux = Lista()
         while nodoAct != None:
-            if listaAx.estaEnLista(nodoAct.dato):
+            if self.estaEnLista(nodoAct.dato):
+                listaAux.append(nodoAct.dato)
                 nodoPrev.siguiente = nodoAct.siguiente
             else:
-                self.append(nodoAct.dato)
+                listaAux.append(nodoAct.dato)
                 nodoPrev = nodoAct
             nodoAct = nodoAct.siguiente
+        return listaAux
 
-    
-
-l = Lista() 
-l.append(2),l.append(8),l.append(2),l.append(2),l.append(2)
-l.eliminarDuplicados()
-print(l)
