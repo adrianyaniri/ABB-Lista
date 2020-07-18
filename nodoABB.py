@@ -235,15 +235,16 @@ class NodoArbol:
 
 
 
-    def paginasEnNivel(self, nivel, nivelNodo = 0, lista = None):
+    def paginasEnNivel(self, nivel, nivelNodo = 0, listaWeb = None):
         if nivelNodo == nivel:
-            lista.append(self.paginas.getDato(1))
+            listaWeb.append('a')
+            
         else:
             if self.tieneIzquierdo():
-                self.izquierdo.paginasEnNivel(nivel,nivelNodo +1)
+                self.izquierdo.paginasEnNivel(nivel,nivelNodo +1,listaWeb)
 
             if self.tieneDerecho():
-                self.derecho.paginasEnNivel(nivel, nivelNodo +1)
+                self.derecho.paginasEnNivel(nivel, nivelNodo +1,listaWeb)
 
 
 

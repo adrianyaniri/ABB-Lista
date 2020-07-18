@@ -142,13 +142,13 @@ class ABB:
 # falta eliminar la paginas repetitadas
 
     def paginasEnNivel(self,nivel):
-        lista = Lista()
+        listaWeb = Lista()
         if not self.estaVacio():
-           self.raiz.paginasEnNivel(nivel).clonar()
+           self.raiz.paginasEnNivel(nivel,listaWeb)
         else:
             raise Exception('arbol vacio')
 
-        return lista
+        return listaWeb
 
     
     def cantidadDePalbrasMasUsadas(self, cantidadDePaginas):
@@ -171,12 +171,3 @@ class ABB:
         else:
             raise Exception ('arbol vacio')
         return lista
-
-
-l = Lista()
-l.append('sabana')
-l.append('yoga')
-a = ABB()
-a.insertarPalabra('casa','google')
-a.insertarPagina(l,'yahoo')
-print(a.paginasEnNivel(1))
