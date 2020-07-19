@@ -1,5 +1,8 @@
 from ABB import*
 from lista import*
+from funcAux import*
+from nodoABB import*
+from nodoLista import*
 
 
 
@@ -140,7 +143,7 @@ for nivel in range(17):
 
 print("\nCantidades de palabras mas usadas:")
 for cantidadPaginas in range(1, 10):
-  print("Hay", arbolBuscadorTest.cantidadPalabrasMasUsadas(
+  print("Hay", arbolBuscadorTest.cantidadDePalabrasMasUsadas(
       cantidadPaginas), "palabras usadas en", cantidadPaginas, "paginas o mas")
 
 ################################################################################

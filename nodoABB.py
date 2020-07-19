@@ -117,7 +117,14 @@ class NodoArbol:
             self.paginas.append(web)
 
 
-         
+    def buscarPalabras(self,listaDePalabras):
+        if self.tieneIzquierdo():
+            self.izquierdo.buscarPalabras(listaDePalabras)
+
+        if self.tieneDerecho():
+            self.derecho.buscarPalabras(listaDePalabras)
+
+
 # retorna una lista web de la palabra pasado por parametro
     def listaWebPalabra(self, palabra):
         lista = Lista()
@@ -234,22 +241,23 @@ class NodoArbol:
         return res
 
 
+# retorna las paginas que tiene en ese nivel del arbol
 
-    def paginasEnNivel(self, nivel, nivelNodo = 0, listaWeb = None):
+    def paginasEnNivel(self, nivel,listaWeb,nivelNodo = 0):
         if nivelNodo == nivel:
-            listaWeb.append('a')
+            listaWeb.append(self.paginas)
             
         else:
             if self.tieneIzquierdo():
-                self.izquierdo.paginasEnNivel(nivel,nivelNodo +1,listaWeb)
+                self.izquierdo.paginasEnNivel(nivel,listaWeb, nivelNodo +1)
 
             if self.tieneDerecho():
-                self.derecho.paginasEnNivel(nivel, nivelNodo +1,listaWeb)
+                self.derecho.paginasEnNivel(nivel,listaWeb, nivelNodo +1)
 
 
 
     
-
+# retorna la cantidad de las palabras mas usas en todo el arbol
     def cantidadDePalabrasMasUsadas(self, cantidadDePaginas):
         cantidad = 0
 

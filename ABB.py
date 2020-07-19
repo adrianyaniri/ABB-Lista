@@ -171,3 +171,4 @@ class ABB:
         else:
             raise Exception ('arbol vacio')
         return lista
+

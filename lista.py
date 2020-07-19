@@ -80,21 +80,6 @@ class Lista:
             raise Exception('lista esta vacia')
 
 
-
-# recibe por parametro una posicion y retora el nodo en esa posicion
-    def getNodo(self,pos):
-        nodo = None
-        if 0 <= pos < self.len() and not self.estaVacia():
-            nodo = self.primero.getNodo(pos)
-        else:
-            raise Exception('lista vacia')
-        return nodo
-
-        
-
-    
-
-
 # funcion que recibe por parametro un elemento y retorna si se encuentra o no en la lista
     def estaEnLista(self,elemento):
         res = None
@@ -110,18 +95,22 @@ class Lista:
 
 
 
+
+
 # funcion elimina todos los duplicados de la lista
     def eliminarDuplicados(self):
-        nodoAct = self.primero
-        nodoPrev = self.primero
         listaAux = Lista()
-        while nodoAct != None:
-            if self.estaEnLista(nodoAct.dato):
-                listaAux.append(nodoAct.dato)
-                nodoPrev.siguiente = nodoAct.siguiente
-            else:
-                listaAux.append(nodoAct.dato)
-                nodoPrev = nodoAct
-            nodoAct = nodoAct.siguiente
+        encontrado = None
+        if not self.estaVacia():
+            encontrado = self.primero
+            if encontrado != None:
+                if self.primero.dato == encontrado:
+                    if self.primero.siguiente == None:
+                        self.primero = None
+                    else:
+                        self.primero = self.primero.siguiente
+                else:
+                    listaAux.append(self.primero.dato)
+                    self.eliminarDuplicados()
         return listaAux
 
